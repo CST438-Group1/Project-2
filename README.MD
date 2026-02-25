@@ -84,15 +84,12 @@ MotoRYX is built around the **Lap Vault API** — a secure, RESTful track statis
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-org>/motoryx.git
+git clone https://github.com/CST438-Group1/Project-2
 cd motoryx
 
 # Build and run with Docker
 docker-compose up --build
 ```
-
-The API will be available at `http://localhost:8080`.  
-Swagger UI: `http://localhost:8080/swagger-ui.html`
 
 ### API Endpoints
 
