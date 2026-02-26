@@ -1,0 +1,105 @@
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.continent-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.logo{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.dot{
+    color: #f4b400;
+}
+
+.nav-links{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links span{
+    color: #f4b400;
+    cursor: pointer;
+}
+
+.logout-btn{
+    background: transparent;
+    border: 1px solid #f4b400;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover{
+    background-color: #f4b400;
+    color: black;
+}
+
+.header{
+    margin-bottom: 40px;
+}
+
+.header h2{
+    font-size: 24px;
+    color: #f4b400;
+}
+
+.continent-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.continent-card{
+    background-color: #1a1a1a;
+    border: 2px solid #f4b400;
+    border-radius: 16px;
+    padding: 40px 30px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.continent-card:hover{
+    background-color: #222;
+    transform: translate(-1px);
+}
+
+.continent-card h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.continent-card p{
+    color: #aaa;
+}

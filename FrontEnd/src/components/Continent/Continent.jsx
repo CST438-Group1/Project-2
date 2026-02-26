@@ -10,7 +10,7 @@ function Continent(){
     ];
 
     return (
-        <div className="contient-wrapper">
+        <div className="continent-wrapper">
 
             {/* navbar */}
             <div className="navbar">
