@@ -22,3 +22,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Logs
+npm-debug.log*
+
+# IntelliJ
+.idea/
+*.iml
+
+# OS
+.DS_Store
