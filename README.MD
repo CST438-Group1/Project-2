@@ -135,6 +135,9 @@ docker-compose up --build
 - Postman (API testing)
 - Docker Desktop
 
+**Supabase Link**
+https://supabase.com/dashboard/project/eytlhjybvmmmtcvbxyyr/database/schemas 
+
 ---
 
 ## Conclusion
