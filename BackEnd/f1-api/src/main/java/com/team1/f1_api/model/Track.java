@@ -1,23 +1,48 @@
 package com.team1.f1_api.model;
 
+import jakarta.persistence.*;
 
-//Track class with id, name, countryID for now
+@Entity
+@Table(name = "tracks")
 public class Track {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long trackId;
+
     private String name;
-    private String countryID;
-    public Track(String id, String name, String countryID){
-        this.id = id;
-        this.name = name;
-        this.countryID = countryID;
+
+    private String shortName;
+
+    private Double lengthKm;
+
+    private String surfaceType;
+
+    private Integer configCount;
+
+    public Track() {}
+
+    public Long getTrackId() {
+        return trackId;
     }
-    public String getId(){
-        return id;
-    }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getCountryID(){
-        return countryID;
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public Double getLengthKm() {
+        return lengthKm;
+    }
+
+    public String getSurfaceType() {
+        return surfaceType;
+    }
+
+    public Integer getConfigCount() {
+        return configCount;
     }
 }
