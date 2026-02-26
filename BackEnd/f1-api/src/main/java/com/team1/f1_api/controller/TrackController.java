@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/tracks")
 public class TrackController {
     @GetMapping
-    public List<Track> Track() {
+    public List<Track> getTracks() {
         return List.of(new Track("1", "Monza", "IT"));
-    }
+    } //Hard coded data to return for now
 }
