@@ -1,0 +1,15 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Java / Spring Boot
+target/
+*.log
+
+# Node (if frontend later)
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
