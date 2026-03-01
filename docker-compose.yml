@@ -1,0 +1,22 @@
+# ====================================
+# MotoRYX — Docker Compose Configuration
+# Builds and runs the Spring Boot backend container.
+# The app connects to the remote Supabase PostgreSQL database
+# using credentials defined in application.properties.
+# ====================================
+
+services:
+  backend:
+    build:
+      context: ./Backend/f1-api
+      dockerfile: Dockerfile
+    container_name: motoryx-backend
+    ports:
+      - "8080:8080"
+    environment:
+      # Override database credentials via environment variables if needed.
+      # By default, the app uses values from application.properties.
+      SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-west-1.pooler.supabase.com:5432/postgres?sslmode=require
+      SPRING_DATASOURCE_USERNAME: postgres.eytlhjybvmmmtcvbxyyr
+      SPRING_DATASOURCE_PASSWORD: MotoRYX2026
+    restart: unless-stopped

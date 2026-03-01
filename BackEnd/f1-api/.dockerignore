@@ -1,0 +1,13 @@
+# Ignore build output and IDE files
+target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Ignore Git metadata
+.git/
+.gitignore
+
+# Ignore the original CSV (already copied into src/main/resources)
+fastestLaps.xlsx - Cars.csv
