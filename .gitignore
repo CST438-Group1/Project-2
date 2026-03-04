@@ -10,6 +10,10 @@ target/
 node_modules/
 dist/
 
+# Environment variables (secrets)
+.env
+.env.*
+
 # OS
 .DS_Store
 Thumbs.db

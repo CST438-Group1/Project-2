@@ -1,0 +1,40 @@
+# ====================================
+# MotoRYX — Render Blueprint Configuration
+# Defines two services:
+#   1. Backend: Spring Boot API (Web Service)
+#   2. Frontend: React + Vite (Static Site)
+# ====================================
+
+services:
+  # ---------- Backend (Spring Boot API) ----------
+  - type: web
+    name: motoryx-backend
+    runtime: docker
+    dockerfilePath: ./Backend/f1-api/Dockerfile
+    dockerContext: ./Backend/f1-api
+    plan: free
+    envVars:
+      - key: SUPABASE_DB_URL
+        sync: false
+      - key: SUPABASE_DB_USERNAME
+        sync: false
+      - key: SUPABASE_DB_PASSWORD
+        sync: false
+
+  # ---------- Frontend (React + Vite Static Site) ----------
+  - type: web
+    name: motoryx-frontend
+    runtime: static
+    buildCommand: cd Frontend && npm install && npm run build
+    staticPublishPath: ./Frontend/dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false
