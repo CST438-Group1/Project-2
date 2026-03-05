@@ -1,47 +1,72 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./Continent.css";
 
-function Continent(){
-    const continents = [
-        {name: "North America", countries: 23},
-        {name: "Europe", countries: 44},
-        {name: "South America", countries: 54},
-        {name: "Asian Pacific", countries: 12},
-        {name: "Australia", countries: 49}
-    ];
+function Continent() {
+  const navigate = useNavigate();
+  const [continents, setContinents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    return (
-        <div className="continent-wrapper">
+  useEffect(() => {
+    async function load() {
+      try {
+        setLoading(true);
+        setError("");
+        const res = await fetch(`${API_URL}/continents`);
+        if (!res.ok) throw new Error(`API error: ${res.status}`);
+        const data = await res.json();
+        setContinents(Array.isArray(data) ? data : []);
+      } catch (e) {
+        setError(e.message || "Failed to load continents");
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
 
-            {/* navbar */}
-            <div className="navbar">
-                <div className="logo">
-                    MotoRYX<span className="dot">.</span>
-                </div>
-
-                <div className="nav-links">
-                    <span>Saved</span>
-                    <span>Profile</span>
-                    <button className="logout-btn">Log Out</button>
-                </div>
-            </div>
-
-            {/* header */}
-            <div className="header">
-                <h2>Choose Your Continent</h2>
-            </div>
-
-            {/* grid */}
-            <div className="continent-grid">
-                {continents.map((continent, index) => (
-                    <div key={index} className="continent-card">
-                        <h3>{continent.name}</h3>
-                        <p>{continent.countries} Countries</p>
-                    </div>
-                ))}
-            </div>
-
+  return (
+    <div className="continent-wrapper">
+      <div className="navbar">
+        <div className="logo">
+          MotoRYX<span className="dot">.</span>
         </div>
-    );
+        <div className="nav-links">
+          <span>Saved</span>
+          <span>Profile</span>
+          <button className="logout-btn" onClick={() => navigate("/")}>
+            Log Out
+          </button>
+        </div>
+      </div>
+
+      <div className="header">
+        <h2>Choose Your Continent</h2>
+      </div>
+
+      {loading && <p>Loading…</p>}
+      {error && <p style={{ color: "#f4b400" }}>{error}</p>}
+
+      {!loading && !error && (
+        <div className="continent-grid">
+          {continents.map((c) => (
+            <div
+              key={c.name}
+              className="continent-card"
+              onClick={() =>
+                navigate(`/continents/${encodeURIComponent(c.name)}`)
+              }
+            >
+              <h3>{c.name}</h3>
+              <p>{c.countryCount} Countries</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Continent
+export default Continent;

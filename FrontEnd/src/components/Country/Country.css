@@ -1,0 +1,127 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.country-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: #121212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 80px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.dot {
+    color: #f4b400;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links span {
+    color: #f4b400;
+    cursor: pointer;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #f4b400;
+    color: white;
+    padding: 6px 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #f4b400;
+    color: black;
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    color: #f4b400;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 12px;
+    display: block;
+    transition: opacity 0.2s;
+}
+
+.back-btn:hover {
+    opacity: 0.7;
+}
+
+.header h2 {
+    font-size: 24px;
+    color: #f4b400;
+}
+
+.country-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-content: start;
+}
+
+.country-card {
+    background-color: #1a1a1a;
+    border: 2px solid #f4b400;
+    border-radius: 16px;
+    padding: 30px 24px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.country-card:hover {
+    background-color: #222;
+    transform: translateY(-2px);
+}
+
+.country-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.country-card p {
+    color: #aaa;
+    font-size: 14px;
+}
