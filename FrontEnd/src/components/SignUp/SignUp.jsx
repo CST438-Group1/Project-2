@@ -44,30 +44,17 @@ function SignUp() {
         window.location.href = `${API_URL}/oauth2/authorization/google`;
     };
 
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <button type="submit">Sign Up</button>
-          </form>
+    return (
+        <div className="signup-wrapper">
+            {/* LEFT SIDE */}
+            <div className="left-section">
+                <h1 className="logo">
+                    MotoRYX<span className="dot">.</span>
+                </h1>
+                <p className="tagline">
+                    Every Model. Every Lap. Logged.
+                </p>
+            </div>
 
             {/* RIGHT SIDE */}
             <div className="right-section">
@@ -126,9 +113,7 @@ function SignUp() {
                 </div>
             </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default SignUp;
