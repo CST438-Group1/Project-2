@@ -31,8 +31,12 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                )
+                        .requestMatchers("/", "/error").permitAll()
+                        .requestMatchers("/tracks/**").permitAll()
+                        .anyRequest().authenticated()
+                ) //Allows all url besides track to be authenticated.
+                //Track is temporarily visible for debugging early on
+                .oauth2Login(oauth -> {})
                 .formLogin(form -> form.disable())
                 .httpBasic(basic -> basic.disable());
 
