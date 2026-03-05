@@ -3,6 +3,7 @@ package com.team1.f1_api.controller;
 import com.team1.f1_api.model.Track;
 import com.team1.f1_api.repository.TrackRepository;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/tracks")
+@CrossOrigin(origins = "*")
 public class TrackController {
 
     private final TrackRepository trackRepository;
@@ -33,5 +35,18 @@ public class TrackController {
     @GetMapping
     public List<Track> getAllTracks() {
         return trackRepository.findAll();
+    }
+
+    /**
+     * Retrieves a single track by its ID.
+     *
+     * @param id the track ID
+     * @return the Track entity, or 404 if not found
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Track> getTrackById(@PathVariable Long id) {
+        return trackRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
