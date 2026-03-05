@@ -14,8 +14,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      # Supabase credentials — matches ${SUPABASE_DB_*} in application.properties
-      SUPABASE_DB_URL: jdbc:postgresql://aws-1-us-west-1.pooler.supabase.com:5432/postgres?sslmode=require
-      SUPABASE_DB_USERNAME: postgres.eytlhjybvmmmtcvbxyyr
-      SUPABASE_DB_PASSWORD: MotoRYX2026
+      # Spring Boot auto-maps SPRING_DATASOURCE_* to spring.datasource.* properties
+      SPRING_DATASOURCE_URL: jdbc:postgresql://aws-1-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require&prepareThreshold=0
+      SPRING_DATASOURCE_USERNAME: postgres.eytlhjybvmmmtcvbxyyr
+      SPRING_DATASOURCE_PASSWORD: MotoRYX2026
     restart: unless-stopped
