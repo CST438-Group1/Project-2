@@ -73,21 +73,49 @@
     border-bottom: 1px solid #f4b400;
 }
 
-/* MINIMAL TEXT-STYLE BUTTON */
-.signup-box button {
-    background: none;
-    border: none;
-    color: #f4b400;
-    font-size: 18px;
+/* GOOGLE BUTTON */
+.google-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #f4b400;
+    color: #121212;
+    font-size: 16px;
     font-weight: 600;
-    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    padding: 0;
     transition: 0.2s ease;
 }
 
-.signup-box button:hover {
-    opacity: 0.8;
+.google-btn:hover {
+    background-color: #d9a000;
+}
+
+/* DIVIDER */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #444;
+}
+
+.divider span {
+    padding: 0 12px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* ERROR TEXT */
+.error-text {
+    color: #ff4444;
+    font-size: 13px;
+    margin-bottom: 15px;
 }
 
 /* BOTTOM TEXT */

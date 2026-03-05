@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/vehicles")
-@CrossOrigin(origins = "*")
 public class VehicleController {
 
     private final VehicleRepository vehicleRepository;

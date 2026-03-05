@@ -108,3 +108,48 @@
     color: #f4b400;
     cursor: pointer;
 }
+
+/* GOOGLE BUTTON */
+.google-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #f4b400;
+    color: #121212;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.google-btn:hover {
+    background-color: #d9a000;
+}
+
+/* DIVIDER */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #444;
+}
+
+.divider span {
+    padding: 0 12px;
+    color: #777;
+    font-size: 13px;
+}
+
+/* ERROR TEXT */
+.error-text {
+    color: #ff4444;
+    font-size: 13px;
+    margin-bottom: 15px;
+}

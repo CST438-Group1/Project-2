@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/laps")
-@CrossOrigin(origins = "*")
 public class FastestLapController {
 
     private final FastestLapRepository fastestLapRepository;

@@ -62,3 +62,23 @@ CREATE TABLE IF NOT EXISTS fastest_laps (
 CREATE INDEX IF NOT EXISTS idx_fastest_laps_track ON fastest_laps(track_id);
 CREATE INDEX IF NOT EXISTS idx_fastest_laps_vehicle ON fastest_laps(vehicle_id);
 CREATE INDEX IF NOT EXISTS idx_fastest_laps_driver ON fastest_laps(driver);
+
+-- -----------------------------------------------
+-- Table: app_users
+-- Stores registered users for both local and OAuth2 authentication.
+-- Columns:
+--   user_id   - Auto-generated primary key
+--   username  - Unique username chosen by the user
+--   email     - Unique email address
+--   password  - BCrypt-hashed password (null for OAuth2-only users)
+--   provider  - "local" or "google"
+--   picture   - Profile picture URL (from Google, null for local users)
+-- -----------------------------------------------
+CREATE TABLE IF NOT EXISTS app_users (
+    user_id   BIGSERIAL PRIMARY KEY,
+    username  VARCHAR(255) NOT NULL UNIQUE,
+    email     VARCHAR(255) NOT NULL UNIQUE,
+    password  VARCHAR(255),
+    provider  VARCHAR(20) NOT NULL,
+    picture   VARCHAR(500)
+);
