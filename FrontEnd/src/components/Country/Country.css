@@ -23,6 +23,7 @@ body,
     padding: 40px 80px;
 }
 
+/* navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,8 +66,14 @@ body,
     color: black;
 }
 
+/* header */
 .header {
     margin-bottom: 40px;
+}
+
+.header h2 {
+    font-size: 24px;
+    color: #f4b400;
 }
 
 .back-btn {
@@ -85,11 +92,7 @@ body,
     opacity: 0.7;
 }
 
-.header h2 {
-    font-size: 24px;
-    color: #f4b400;
-}
-
+/* grid */
 .country-grid {
     flex: 1;
     display: grid;
@@ -98,6 +101,7 @@ body,
     align-content: start;
 }
 
+/* cards */
 .country-card {
     background-color: #1a1a1a;
     border: 2px solid #f4b400;
@@ -124,4 +128,23 @@ body,
 .country-card p {
     color: #aaa;
     font-size: 14px;
+}
+
+/* utilities */
+.logo-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #f4b400;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: #f4b400;
+    font-size: 18px;
 }
