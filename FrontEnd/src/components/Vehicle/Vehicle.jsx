@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./Vehicle.css";
 
 function Vehicle() {
@@ -12,7 +13,7 @@ function Vehicle() {
 
     // fetch track name and laps
     useEffect(() => {
-        fetch("http://localhost:8080/tracks")
+        fetch(`${API_URL}/tracks`)
             .then((res) => res.json())
             .then((data) => {
                 const track = data.find(
@@ -25,7 +26,7 @@ function Vehicle() {
                 console.error("error fetching track:", err)
             );
 
-        fetch(`http://localhost:8080/laps/track/${trackId}`)
+        fetch(`${API_URL}/laps/track/${trackId}`)
             .then((res) => res.json())
             .then((data) => setLaps(data))
             .catch((err) =>

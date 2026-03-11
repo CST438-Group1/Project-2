@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import API_URL from "../../api";
 import "./Track.css";
 
 function Track() {
@@ -11,7 +12,7 @@ function Track() {
 
     // fetch tracks and filter by country
     useEffect(() => {
-        fetch("http://localhost:8080/tracks")
+        fetch(`${API_URL}/tracks`)
             .then((res) => res.json())
             .then((data) => {
                 const filtered = data.filter(
