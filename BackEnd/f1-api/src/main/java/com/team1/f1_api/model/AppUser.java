@@ -33,6 +33,9 @@ public class AppUser {
     /** Google profile picture URL (null for local users). */
     private String picture;
 
+    @Column(nullable = false)
+    private String role;
+
     public AppUser() {}
 
     public AppUser(String username, String email, String password, String provider) {
@@ -40,6 +43,7 @@ public class AppUser {
         this.email = email;
         this.password = password;
         this.provider = provider;
+        this.role = "USER";
     }
 
     public Long getUserId() { return userId; }
@@ -48,10 +52,12 @@ public class AppUser {
     public String getPassword() { return password; }
     public String getProvider() { return provider; }
     public String getPicture() { return picture; }
+    public String getRole() { return role; }
 
     public void setUsername(String username) { this.username = username; }
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
     public void setProvider(String provider) { this.provider = provider; }
     public void setPicture(String picture) { this.picture = picture; }
+    public void setRole(String role) { this.role = role; }
 }

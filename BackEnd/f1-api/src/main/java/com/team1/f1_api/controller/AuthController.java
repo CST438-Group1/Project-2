@@ -2,13 +2,22 @@ package com.team1.f1_api.controller;
 
 import com.team1.f1_api.model.AppUser;
 import com.team1.f1_api.repository.AppUserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.util.List;
 import java.util.Map;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
 /**
  * REST controller for authentication-related endpoints.
@@ -70,7 +79,7 @@ public class AuthController {
      * @return user info on success, or an error message
      */
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> body, HttpSession session) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String username = body.get("username");
         String password = body.get("password");
 
@@ -81,6 +90,12 @@ public class AuthController {
         return userRepo.findByUsername(username)
                 .filter(user -> passwordEncoder.matches(password, user.getPassword()))
                 .map(user -> {
+                    Authentication auth = new UsernamePasswordAuthenticationToken(
+                            user.getUsername(), null, List.of(new SimpleGrantedAuthority(user.getRole()))
+                    );
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                    new HttpSessionSecurityContextRepository()
+                            .saveContext(SecurityContextHolder.getContext(), request, response);
                     session.setAttribute("userId", user.getUserId());
                     session.setAttribute("username", user.getUsername());
                     session.setAttribute("email", user.getEmail());

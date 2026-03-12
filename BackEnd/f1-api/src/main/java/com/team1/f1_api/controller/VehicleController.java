@@ -61,4 +61,29 @@ public class VehicleController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @PostMapping
+    public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+        Vehicle saved = vehicleRepository.save(vehicle);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Long id, @RequestBody Vehicle updated) {
+        return vehicleRepository.findById(id)
+                .map(existing -> {
+                    existing.setName(updated.getName());
+                    return ResponseEntity.ok(vehicleRepository.save(existing));
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
+        if (!vehicleRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        vehicleRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
