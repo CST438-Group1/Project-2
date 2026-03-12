@@ -34,13 +34,13 @@
 }
 
 .dot {
-    color: #f4c430;
+    color: #f4b400;
 }
 
 .tagline {
     margin-top: 20px;
     font-size: 22px;
-    color: #f4c430;
+    color: #f4b400;
 }
 
 /* RIGHT SIDE */
@@ -57,7 +57,7 @@
 }
 
 .auth-title {
-    color: #f4c430;
+    color: #f4b400;
     margin-bottom: 30px;
     font-weight: 600;
 }
@@ -74,7 +74,7 @@
 }
 
 .auth-box input:focus {
-    outline: 1px solid #f4c430;
+    outline: 1px solid #f4b400;
 }
 
 /* BUTTON */
@@ -90,11 +90,11 @@
 }
 
 .auth-button:hover {
-    background-color: #f4c430;
+    background-color: #f4b400;
     color: black;
 }
 
-/* Divider */
+/* Divider with lines */
 .divider {
     display: flex;
     align-items: center;
@@ -119,15 +119,16 @@
     margin-left: 15px;
 }
 
-/* Google Text */
+/* Google text */
 .google-text {
     margin-top: 25px;
     font-size: 14px;
     color: #888;
+    text-align: center;
 }
 
 .google-text span {
-    color: #f4c430;
+    color: #f4b400;
     cursor: pointer;
 }
 
@@ -135,15 +136,16 @@
     text-decoration: underline;
 }
 
-/* Switch Text */
+/* Switch text */
 .auth-switch {
     margin-top: 30px;
     font-size: 14px;
     color: #777;
+    text-align: center;
 }
 
 .auth-switch span {
-    color: #f4c430;
+    color: #f4b400;
     cursor: pointer;
 }
 

@@ -99,7 +99,9 @@ function SignUp() {
                             type="password"
                             placeholder="Confirm Password"
                             value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            onChange={(e) =>
+                                setConfirmPassword(e.target.value)
+                            }
                             required
                         />
 
@@ -109,7 +111,7 @@ function SignUp() {
                     </form>
 
                     <div className="divider">
-                        <span>or</span>
+                        or
                     </div>
 
                     <div className="google-text">
