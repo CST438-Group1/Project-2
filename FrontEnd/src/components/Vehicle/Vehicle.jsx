@@ -45,8 +45,14 @@ function Vehicle() {
         <div className="vehicle-wrapper">
             {/* navbar */}
             <div className="navbar">
-                <div className="logo">
-                    MotoRYX<span className="dot">.</span>
+                <div className="logo-row">
+                    <div className="logo">
+                        MotoRYX<span className="dot">.</span>
+                    </div>
+
+                    <div className="nav-location">
+                        {decodeURIComponent(countryName)}, {trackName}
+                    </div>
                 </div>
 
                 <div className="nav-links">
