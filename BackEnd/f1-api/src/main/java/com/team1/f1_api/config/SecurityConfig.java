@@ -1,10 +1,12 @@
 package com.team1.f1_api.config;
 
+import com.team1.f1_api.service.AppUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,6 +30,12 @@ public class SecurityConfig {
     @Value("${app.frontend.url:http://localhost:5173}")
     private String frontendUrl;
 
+    private final AppUserService appUserService;
+
+    public SecurityConfig(AppUserService appUserService) {
+        this.appUserService = appUserService;
+    }
+
     /**
      * Configures the HTTP security filter chain.
      * - CORS enabled for frontend origin
@@ -45,13 +53,18 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
+                .userDetailsService(appUserService)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/tracks/**", "/vehicles/**", "/laps/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/tracks/**", "/vehicles/**", "/laps/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/tracks/**", "/vehicles/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/tracks/**", "/vehicles/**").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/tracks/**", "/vehicles/**").hasAuthority("ADMIN")
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/auth/me").authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(u -> u.userService(appUserService))
                         .successHandler(oAuth2SuccessHandler())
                 )
                 .logout(logout -> logout

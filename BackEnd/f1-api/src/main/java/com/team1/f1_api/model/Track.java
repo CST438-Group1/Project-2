@@ -82,4 +82,11 @@ public class Track {
     public Double getLengthKm() {
         return lengthKm;
     }
+
+    //setters for values
+    public void setRegion(String region) { this.region = region; }
+    public void setCountry(String country) { this.country = country; }
+    public void setName(String name) { this.name = name; }
+    public void setLayout(String layout) { this.layout = layout; }
+    public void setLengthKm(Double lengthKm) { this.lengthKm = lengthKm; }
 }
