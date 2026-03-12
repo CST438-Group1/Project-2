@@ -69,11 +69,8 @@ body,
 /* header */
 .header {
     margin-bottom: 40px;
-}
-
-.header h2 {
-    font-size: 24px;
     color: #f4b400;
+    font-size: 18px;
 }
 
 .back-btn {

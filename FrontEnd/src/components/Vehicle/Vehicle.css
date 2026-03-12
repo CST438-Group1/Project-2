@@ -22,6 +22,18 @@
     font-weight: bold;
 }
 
+.logo-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-location {
+    font-size: 20px;
+    font-weight: 600;
+    color: #f4b400;
+}
+
 .dot {
     color: #f4b400;
 }

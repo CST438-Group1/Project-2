@@ -1,0 +1,100 @@
+.specs-wrapper {
+    min-height: 100vh;
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 40px;
+}
+
+.specs-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dot {
+    color: #f4c430;
+}
+
+.back-btn {
+    background-color: transparent;
+    border: 1px solid #f4c430;
+    color: #f4c430;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #f4c430;
+    color: #111;
+}
+
+.specs-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.specs-left {
+    flex: 1;
+}
+
+.vehicle-title {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.vehicle-subtitle {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.spec-item {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-left: 4px solid #f4c430;
+}
+
+.spec-item span {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 6px;
+}
+
+.spec-item strong {
+    font-size: 18px;
+}
+
+.specs-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vehicle-image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.specs-loading,
+.specs-error {
+    color: white;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 18px;
+}

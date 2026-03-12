@@ -65,16 +65,13 @@ function Country() {
 
             {/* header */}
             <div className="header">
+                <header>Choose Your Country</header>
                 <button
                     className="back-btn"
                     onClick={() => navigate("/continents")}
                 >
                     ← Back
                 </button>
-
-                <p className="subtitle">
-                    Choose Your Country
-                </p>
             </div>
 
             {/* states */}

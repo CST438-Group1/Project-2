@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * stored in Supabase PostgreSQL.
  */
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/vehicles")
 public class VehicleController {
 

@@ -45,8 +45,14 @@ function Vehicle() {
         <div className="vehicle-wrapper">
             {/* navbar */}
             <div className="navbar">
-                <div className="logo">
-                    MotoRYX<span className="dot">.</span>
+                <div className="logo-row">
+                    <div className="logo">
+                        MotoRYX<span className="dot">.</span>
+                    </div>
+
+                    <div className="nav-location">
+                        {decodeURIComponent(countryName)}, {trackName}
+                    </div>
                 </div>
 
                 <div className="nav-links">
@@ -95,6 +101,12 @@ function Vehicle() {
                     <div
                         key={lap.lapId}
                         className="vehicle-card"
+                        onClick={() =>
+                            navigate(
+                                `/continents/${continentName}/${countryName}/${trackId}/vehicle/${lap.vehicle.vehicleId}`
+                            )
+                        }
+                        style={{ cursor: "pointer" }}
                     >
                         <div className="vehicle-info">
                             <h3>{lap.vehicle.name}</h3>

@@ -48,10 +48,9 @@ function Track() {
           <span className="logo">
             MotoRYX<span className="dot">.</span>
           </span>
-
-                    <span className="page-title">
-            {countryName}
-          </span>
+                    <span className="nav-location">
+                        {decodeURIComponent(countryName)}
+                    </span>
                 </div>
 
                 <div className="nav-links">

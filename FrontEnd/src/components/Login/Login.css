@@ -1,155 +1,139 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
-
-.login-wrapper {
+.auth-wrapper {
     display: flex;
     height: 100vh;
-    width: 100vw;
-    background-color: #121212;
-    color: white;
 }
 
 /* LEFT SIDE */
-.left-section {
-    flex: 1.5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 8%;
+.auth-left {
+    position: relative;
+    width: 60%;
+    background: url("../../assets/titleImage.jpg") center/cover no-repeat;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.6)
+    );
+}
+
+.auth-left-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px;
+    color: white;
 }
 
 .logo {
-    font-size: 72px;
+    font-size: 64px;
     font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .dot {
-    color: #f4b400;
+    color: #f4c430;
 }
 
 .tagline {
     margin-top: 20px;
     font-size: 22px;
-    color: #f4b400;
+    color: #f4c430;
 }
 
 /* RIGHT SIDE */
-.right-section {
-    flex: 1;
-    background-color: rgba(0, 0, 0, 0.92);
+.auth-right {
+    width: 40%;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
 }
 
-.login-box,
-.signup-box {
-    width: 100%;
-    max-width: 380px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+.auth-box {
+    width: 70%;
 }
 
-.welcome-text {
-    color: #f4b400;
-    margin-bottom: 60px;
-    font-size: 24px;
+.auth-title {
+    color: #f4c430;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
 /* INPUTS */
-.login-box input {
+.auth-box input {
     width: 100%;
-    background: transparent;
+    padding: 14px;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
     border: none;
-    border-bottom: 1px solid #444;
-    padding: 12px 0;
-    margin-bottom: 30px;
     color: white;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-.login-box input:focus {
-    outline: none;
-    border-bottom: 1px solid #f4b400;
-    margin-bottom: 35px;
+.auth-box input:focus {
+    outline: 1px solid #f4c430;
 }
 
 /* BUTTON */
-.login-box button {
-    background: none;
-    border: none;
-    color: #f4b400;
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 20px;
-    cursor: pointer;
-    padding: 0;
-    transition: 0.2s ease;
-}
-
-.login-box button:hover {
-    opacity: 0.8;
-}
-
-.signup-text {
-    margin-top: 50px;
-    font-size: 13px;
-    color: #777;
-}
-
-.signup-text span {
-    color: #f4b400;
-    cursor: pointer;
-}
-
-/* GOOGLE BUTTON */
-.google-btn {
+.auth-button {
     width: 100%;
     padding: 14px;
-    background-color: #f4b400;
-    color: #121212;
-    font-size: 16px;
-    font-weight: 600;
+    background-color: #1a1a1a;
+    color: white;
     border: none;
-    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.3s ease;
 }
 
-.google-btn:hover {
-    background-color: #d9a000;
+.auth-button:hover {
+    background-color: #f4c430;
+    color: black;
 }
 
-/* DIVIDER */
+/* Divider */
 .divider {
-    display: flex;
-    align-items: center;
-    margin: 25px 0;
+    margin: 30px 0;
+    text-align: center;
+    color: #aaa;
 }
 
-.divider::before,
-.divider::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #444;
+/* Google Text */
+.google-text {
+    font-size: 14px;
+    color: #aaa;
 }
 
-.divider span {
-    padding: 0 12px;
-    color: #777;
-    font-size: 13px;
+.google-text span {
+    color: #f4c430;
+    cursor: pointer;
 }
 
-/* ERROR TEXT */
+.google-text span:hover {
+    text-decoration: underline;
+}
+
+/* Switch Text */
+.auth-switch {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.auth-switch span {
+    color: #f4c430;
+    cursor: pointer;
+}
+
+.auth-switch span:hover {
+    text-decoration: underline;
+}
+
+/* Error */
 .error-text {
-    color: #ff4444;
-    font-size: 13px;
+    color: #ff4d4d;
     margin-bottom: 15px;
 }

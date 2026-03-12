@@ -28,7 +28,7 @@ function Login() {
             } else {
                 setError(data.error || "Login failed");
             }
-        } catch (err) {
+        } catch {
             setError("Unable to connect to server");
         }
     };
@@ -38,21 +38,27 @@ function Login() {
     };
 
     return (
-        <div className="login-wrapper">
+        <div className="auth-wrapper">
+
             {/* LEFT SIDE */}
-            <div className="left-section">
-                <h1 className="logo">
-                    MotoRYX<span className="dot">.</span>
-                </h1>
-                <p className="tagline">
-                    Every Model. Every Lap. Logged.
-                </p>
+            <div className="auth-left">
+                <div className="overlay"></div>
+
+                <div className="auth-left-content">
+                    <h1 className="logo">
+                        MotoRYX<span className="dot">.</span>
+                    </h1>
+                    <p className="tagline">
+                        Every Model. Every Lap. Logged.
+                    </p>
+                </div>
             </div>
 
             {/* RIGHT SIDE */}
-            <div className="right-section">
-                <div className="login-box">
-                    <h3 className="welcome-text">Welcome Back</h3>
+            <div className="auth-right">
+                <div className="auth-box">
+
+                    <h2 className="auth-title">Welcome Back</h2>
 
                     {error && <p className="error-text">{error}</p>}
 
@@ -73,20 +79,26 @@ function Login() {
                             required
                         />
 
-                        <button type="submit">Log In</button>
+                        <button type="submit" className="auth-button">
+                            Log In
+                        </button>
                     </form>
 
                     <div className="divider">
                         <span>or</span>
                     </div>
 
-                    <button className="google-btn" onClick={handleGoogleLogin}>
-                        Sign in with Google
-                    </button>
+                    <div className="google-text">
+                        Sign in with <span onClick={handleGoogleLogin}>Google</span>
+                    </div>
 
-                    <p className="signup-text">
-                        No account? <span onClick={() => navigate("/signup")}>Sign up</span>
-                    </p>
+                    <div className="auth-switch">
+                        No account?{" "}
+                        <span onClick={() => navigate("/signup")}>
+                            Sign up
+                        </span>
+                    </div>
+
                 </div>
             </div>
         </div>

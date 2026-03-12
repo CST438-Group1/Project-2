@@ -5,6 +5,7 @@ import Continent from "./components/Continent/Continent";
 import Country from "./components/Country/Country";
 import Track from "./components/Track/Track";
 import Vehicle from "./components/Vehicle/Vehicle";
+import Specs from "./components/Specs/Specs";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
 
                 <Route path="/continents" element={<Continent />} />
                 <Route path="/continents/:continentName" element={<Country />} />
+                <Route path="/continents/:continentName/:countryName/:trackId/vehicle/:vehicleId" element={<Specs />} />
 
                 {/* NEW ROUTES */}
                 <Route
