@@ -61,6 +61,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/tracks/**", "/vehicles/**").hasAuthority("ADMIN")
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/auth/me").authenticated()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(oauth2 -> oauth2

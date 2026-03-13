@@ -2,6 +2,8 @@ package com.team1.f1_api.controller;
 
 import com.team1.f1_api.model.AppUser;
 import com.team1.f1_api.repository.AppUserRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -42,6 +44,9 @@ public class AuthController {
      * @param body map containing "username", "email", and "password"
      * @return the created user info or an error message
      */
+    @Operation(summary = "Register new user", description = "Creates a new local user account")
+    @ApiResponse(responseCode = "200", description = "Registration successful")
+    @ApiResponse(responseCode = "400", description = "Username or email already taken")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String username = body.get("username");
@@ -78,6 +83,10 @@ public class AuthController {
      * @param session the HTTP session
      * @return user info on success, or an error message
      */
+    @Operation(summary = "Login", description = "Authenticates a local user and creates a session")
+    @ApiResponse(responseCode = "200", description = "Login successful")
+    @ApiResponse(responseCode = "400", description = "Missing username or password")
+    @ApiResponse(responseCode = "401", description = "Invalid username or password")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         String username = body.get("username");
@@ -117,6 +126,9 @@ public class AuthController {
      * @param session the HTTP session
      * @return a map containing the user's name, email, and picture
      */
+    @Operation(summary = "Get current user", description = "Returns the authenticated user's profile info")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved user info")
+    @ApiResponse(responseCode = "401", description = "Not authenticated")
     @GetMapping("/me")
     public ResponseEntity<?> me(@AuthenticationPrincipal OAuth2User oauthUser, HttpSession session) {
         // OAuth2 user (Google login)
@@ -147,6 +159,8 @@ public class AuthController {
      * @param session the HTTP session
      * @return a success message
      */
+    @Operation(summary = "Logout", description = "Invalidates the current session")
+    @ApiResponse(responseCode = "200", description = "Successfully logged out")
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession session) {
         session.invalidate();

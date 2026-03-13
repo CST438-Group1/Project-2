@@ -13,16 +13,33 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
+/**
+ * Service handling user authentication for both local and Google OAuth2 logins.
+ * Implements {@link UserDetailsService} for Spring Security session-based auth
+ * and {@link DefaultOAuth2UserService} for Google OAuth2 login.
+ */
 @Service
 public class AppUserService extends DefaultOAuth2UserService implements UserDetailsService {
 
     private final AppUserRepository userRepo;
 
+    /**
+     * Constructs the service with the required AppUserRepository dependency.
+     *
+     * @param userRepo the JPA repository for AppUser entities
+     */
     public AppUserService(AppUserRepository userRepo) {
         this.userRepo = userRepo;
     }
 
-
+    /**
+     * Loads a user by username for Spring Security authentication.
+     * Used during local username/password login.
+     *
+     * @param username the username to look up
+     * @return a UserDetails object containing the user's credentials and authorities
+     * @throws UsernameNotFoundException if no user exists with the given username
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = userRepo.findByUsername(username)
@@ -34,6 +51,15 @@ public class AppUserService extends DefaultOAuth2UserService implements UserDeta
                 .authorities(user.getRole())
                 .build();
     }
+    /**
+     * Loads or creates a user during Google OAuth2 login.
+     * If the user does not exist in the database, a new AppUser is created
+     * with provider set to "google". Returns a DefaultOAuth2User with the
+     * role loaded from the database.
+     *
+     * @param userRequest the OAuth2 user request containing Google credentials
+     * @return an OAuth2User with authorities mapped from the database role
+     */
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) {
         OAuth2User oauthUser = super.loadUser(userRequest);

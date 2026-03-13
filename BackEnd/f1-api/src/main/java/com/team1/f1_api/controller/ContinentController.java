@@ -5,6 +5,9 @@ import com.team1.f1_api.controller.dto.CountryDto;
 import com.team1.f1_api.repository.TrackRepository;
 import java.util.Comparator;
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +21,8 @@ public class ContinentController {
         this.trackRepository = trackRepository;
     }
 
+    @Operation(summary = "Get all continents", description = "Retrieves all continents")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved continents")
     @GetMapping
     public List<ContinentDto> getContinents() {
         return trackRepository
@@ -33,6 +38,9 @@ public class ContinentController {
             .toList();
     }
 
+    @Operation(summary = "Get all countries", description = "Retrieves all countries by continent")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved countries")
+    @ApiResponse(responseCode = "404", description = "Continent not found")
     @GetMapping("/{continentName}/countries")
     public ResponseEntity<List<CountryDto>> getCountriesByContinent(
         @PathVariable String continentName
