@@ -5,6 +5,8 @@ import com.team1.f1_api.controller.dto.CountryDto;
 import com.team1.f1_api.repository.TrackRepository;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,17 +27,20 @@ public class ContinentController {
     @ApiResponse(responseCode = "200", description = "Successfully retrieved continents")
     @GetMapping
     public List<ContinentDto> getContinents() {
-        return trackRepository
-            .countCountriesByRegion()
-            .stream()
-            .map(v ->
-                new ContinentDto(
-                    mapRegionToName(v.getRegion()),
-                    v.getCountryCount()
-                )
-            )
-            .sorted(Comparator.comparing(ContinentDto::name))
-            .toList();
+
+        Map<String, Long> continentCounts = trackRepository
+                .countCountriesByRegion()
+                .stream()
+                .collect(Collectors.groupingBy(
+                        v -> mapRegionToName(v.getRegion()),
+                        Collectors.summingLong(v -> v.getCountryCount())
+                ));
+
+        return continentCounts.entrySet()
+                .stream()
+                .map(entry -> new ContinentDto(entry.getKey(), entry.getValue()))
+                .sorted(Comparator.comparing(ContinentDto::name))
+                .toList();
     }
 
     @Operation(summary = "Get all countries", description = "Retrieves all countries by continent")
@@ -43,7 +48,7 @@ public class ContinentController {
     @ApiResponse(responseCode = "404", description = "Continent not found")
     @GetMapping("/{continentName}/countries")
     public ResponseEntity<List<CountryDto>> getCountriesByContinent(
-        @PathVariable String continentName
+            @PathVariable String continentName
     ) {
         String region = mapNameToRegion(continentName);
         if (region == null) {
@@ -51,10 +56,10 @@ public class ContinentController {
         }
 
         List<CountryDto> countries = trackRepository
-            .findCountriesByRegion(region)
-            .stream()
-            .map(v -> new CountryDto(v.getCountry()))
-            .toList();
+                .findCountriesByRegion(region)
+                .stream()
+                .map(v -> new CountryDto(v.getCountry()))
+                .toList();
 
         return ResponseEntity.ok(countries);
     }
@@ -67,7 +72,7 @@ public class ContinentController {
             case "EU" -> "Europe";
             case "AF" -> "Africa";
             case "AS", "AP", "APAC" -> "APAC";
-            case "OC", "AU" -> "Oceania";
+            case "OC", "AU" -> "Australia";
             default -> region.trim();
         };
     }
@@ -80,7 +85,7 @@ public class ContinentController {
             case "EUROPE" -> "EU";
             case "AFRICA" -> "AF";
             case "APAC", "ASIA" -> "APAC";
-            case "OCEANIA" -> "OC";
+            case "AUSTRALIA" -> "AU";
             default -> null;
         };
     }
