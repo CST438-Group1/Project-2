@@ -10,6 +10,7 @@
 }
 
 /* navbar */
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -65,6 +66,7 @@
 }
 
 /* header */
+
 .vehicle-header {
     margin-bottom: 40px;
 }
@@ -102,6 +104,7 @@
 }
 
 /* search */
+
 .search-bar {
     margin-bottom: 30px;
 }
@@ -116,14 +119,58 @@
     outline: none;
 }
 
-/* list */
-.vehicle-list {
+/* main layout */
+
+.vehicle-content {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    height: 500px;
+}
+
+/* brand sidebar */
+
+.brand-sidebar {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+/* brand buttons */
+
+.brand-item {
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #222;
+    transition: 0.2s ease;
+}
+
+.brand-item:hover {
+    background: #333;
+}
+
+.brand-item.active {
+    background: #f4b400;
+    color: black;
+    font-weight: bold;
+}
+
+/* vehicle scroll list */
+
+.vehicle-scroll {
+    overflow-y: auto;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* cards */
+/* vehicle cards */
+
 .vehicle-card {
     background-color: #1a1a1a;
     border-left: 5px solid #f4b400;
@@ -137,7 +184,10 @@
 
 .vehicle-card:hover {
     background-color: #222;
+    transform: translateX(4px);
 }
+
+/* vehicle info */
 
 .vehicle-info h3 {
     font-size: 18px;
@@ -149,6 +199,8 @@
     color: #aaa;
 }
 
+/* lap time */
+
 .lap-time {
     font-size: 28px;
     font-weight: bold;
@@ -156,14 +208,22 @@
 }
 
 /* utilities */
-.logo-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
 .page-title {
     font-size: 32px;
     font-weight: bold;
     color: #f4b400;
+}
+
+.brand-title {
+    color: #f4b400;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    margin-left: 18px
+}
+
+.brand-section {
+    display: flex;
+    flex-direction: column;
 }

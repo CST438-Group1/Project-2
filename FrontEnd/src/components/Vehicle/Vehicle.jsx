@@ -3,6 +3,27 @@ import { useParams, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Vehicle.css";
 
+const brands = [
+    "All Brands",
+    "Alfa Romeo",
+    "AlphaTauri",
+    "Alpine",
+    "Aston Martin",
+    "Ferrari",
+    "Force India",
+    "Haas",
+    "Manor",
+    "McLaren",
+    "Mercedes-Benz",
+    "Racing Bulls",
+    "Racing Point",
+    "Red Bull",
+    "Renault",
+    "Sauber",
+    "Toro Rosso",
+    "Williams"
+];
+
 function Vehicle() {
     const { continentName, countryName, trackId } = useParams();
     const navigate = useNavigate();
@@ -10,8 +31,9 @@ function Vehicle() {
     const [laps, setLaps] = useState([]);
     const [trackName, setTrackName] = useState("");
     const [search, setSearch] = useState("");
+    const [selectedBrand, setSelectedBrand] = useState("All Brands");
 
-    // fetch track name and laps
+    // fetch track name and lap times
     useEffect(() => {
         fetch(`${API_URL}/tracks`)
             .then((res) => res.json())
@@ -34,15 +56,20 @@ function Vehicle() {
             );
     }, [trackId]);
 
-    // filter vehicles by search
-    const filteredLaps = laps.filter((lap) =>
-        lap.vehicle.name
-            .toLowerCase()
-            .includes(search.toLowerCase())
-    );
+    // filter vehicles
+    const filteredLaps = laps
+        .filter((lap) =>
+            lap.vehicle.name.toLowerCase().includes(search.toLowerCase())
+        )
+        .filter((lap) =>
+            selectedBrand === "All Brands"
+                ? true
+                : lap.vehicle.name.includes(selectedBrand)
+        );
 
     return (
         <div className="vehicle-wrapper">
+
             {/* navbar */}
             <div className="navbar">
                 <div className="logo-row">
@@ -68,10 +95,8 @@ function Vehicle() {
             </div>
 
             {/* header */}
-            <div className="header">
-                <p className="subtitle">
-                    Choose Your Vehicle
-                </p>
+            <div className="vehicle-header">
+                <p className="subtitle">Choose Your Vehicle</p>
 
                 <button
                     className="back-btn"
@@ -89,35 +114,61 @@ function Vehicle() {
             <div className="search-bar">
                 <input
                     type="text"
-                    placeholder="Search Vehicle"
+                    placeholder="Search For Vehicle"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
             </div>
 
-            {/* vehicle list */}
-            <div className="vehicle-list">
-                {filteredLaps.map((lap) => (
-                    <div
-                        key={lap.lapId}
-                        className="vehicle-card"
-                        onClick={() =>
-                            navigate(
-                                `/continents/${continentName}/${countryName}/${trackId}/vehicle/${lap.vehicle.vehicleId}`
-                            )
-                        }
-                        style={{ cursor: "pointer" }}
-                    >
-                        <div className="vehicle-info">
-                            <h3>{lap.vehicle.name}</h3>
-                            <p>{lap.driver}</p>
-                        </div>
+            {/* main layout */}
+            <div className="vehicle-content">
 
-                        <div className="lap-time">
-                            {lap.lapTime}
-                        </div>
+                {/* brand sidebar */}
+                <div className="brand-section">
+
+                    <h3 className="brand-title">Filter By Brand</h3>
+
+                    <div className="brand-sidebar">
+                        {brands.map((brand) => (
+                            <div
+                                key={brand}
+                                className={`brand-item ${
+                                    selectedBrand === brand ? "active" : ""
+                                }`}
+                                onClick={() => setSelectedBrand(brand)}
+                            >
+                                {brand}
+                            </div>
+                        ))}
                     </div>
-                ))}
+
+                </div>
+
+                {/* vehicle lap list */}
+                <div className="vehicle-scroll">
+                    {filteredLaps.map((lap) => (
+                        <div
+                            key={lap.lapId}
+                            className="vehicle-card"
+                            onClick={() =>
+                                navigate(
+                                    `/continents/${continentName}/${countryName}/${trackId}/vehicle/${lap.vehicle.vehicleId}`
+                                )
+                            }
+                            style={{ cursor: "pointer" }}
+                        >
+                            <div className="vehicle-info">
+                                <h3>{lap.vehicle.name}</h3>
+                                <p>{lap.driver}</p>
+                            </div>
+
+                            <div className="lap-time">
+                                {lap.lapTime}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </div>
     );
