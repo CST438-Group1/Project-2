@@ -65,21 +65,46 @@
 /* grid */
 .continent-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
 /* cards */
 .continent-card {
-    background-color: #1a1a1a;
-    border: 2px solid #f4b400;
+    position: relative;
+    height: 220px;
     border-radius: 16px;
-    padding: 30px 24px;
+    border: 2px solid #f4b400;
+    overflow: hidden;
     cursor: pointer;
     transition: 0.2s ease;
 }
 
+.continent-card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35; /* transparency */
+}
+
+.continent-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+}
+
+.continent-card h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.continent-card p {
+    color: #bbb;
+    font-size: 14px;
+}
+
 .continent-card:hover {
-    background-color: #222;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    background-color: #1e1e1e;
 }

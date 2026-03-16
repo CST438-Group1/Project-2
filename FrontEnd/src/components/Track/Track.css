@@ -87,15 +87,20 @@
 
 /* cards */
 .track-card {
-    background-color: #1a1a1a;
+    position: relative;
+    height: 200px;
     border: 2px solid #f4b400;
     border-radius: 16px;
-    padding: 20px;
-    min-height: 160px;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: 0.2s ease;
+    align-items: flex-start;
+    padding: 16px;
+
+    overflow: hidden;
     cursor: pointer;
 }
 
@@ -132,4 +137,27 @@
     margin-top: 10px;
     color: #f4b400;
     font-size: 18px;
+}
+
+.track-map {
+    width: 100%;
+    height: 140px;
+    background-size: cover;      /* fills the whole box */
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.track-title {
+    position: relative;
+    color: #f4b400;
+}
+
+.track-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
 }

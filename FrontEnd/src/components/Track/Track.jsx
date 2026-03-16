@@ -2,6 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Track.css";
+import fujiTrack from "../../assets/fujiTrack.png";
+import suzukaTrack from "../../assets/suzukaTrack.png";
+import twinTrack from "../../assets/twinTrack.png";
+import twin2Track from "../../assets/twin2Track.png";
+
+const trackMap = {
+    "Fuji Speedway": fujiTrack,
+    "Suzuka": suzukaTrack,
+    "Twin Ring Motegi": twinTrack,
+};
 
 function Track() {
     const { continentName, countryName } = useParams();
@@ -95,12 +105,12 @@ function Track() {
                     <div
                         key={track.trackId}
                         className="track-card"
-                        onClick={() =>
-                            handleTrackClick(track.trackId)
-                        }
+                        onClick={() => handleTrackClick(track.trackId)}
+                        style={{
+                            backgroundImage: `url(${trackMap[track.name]})`
+                        }}
                     >
-                        <div className="track-image-placeholder"></div>
-                        <h3>{track.name}</h3>
+                        <h3 className="track-title">{track.name}</h3>
                     </div>
                 ))}
             </div>

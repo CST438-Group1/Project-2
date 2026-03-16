@@ -2,6 +2,23 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import API_URL from "../../api";
 import "./Country.css";
+import japanFlag from "../../assets/japanFlag.png";
+import singaporeFlag from "../../assets/singaporeFlag.png";
+import indiaFlag from "../../assets/indiaFlag.png";
+import uaeFlag from "../../assets/uaeFlag.png";
+import bahrainFlag from "../../assets/bahrainFlag.png";
+import malaysiaFlag from "../../assets/malaysiaFlag.jpg";
+import saudiFlag from "../../assets/saudiArabiaFlag.png";
+
+const flagMap = {
+    Japan: japanFlag,
+    Singapore: singaporeFlag,
+    India: indiaFlag,
+    UAE: uaeFlag,
+    Bahrain: bahrainFlag,
+    Malaysia: malaysiaFlag,
+    "Saudi Arabia": saudiFlag
+};
 
 function Country() {
     const { continentName } = useParams();
@@ -92,14 +109,18 @@ function Country() {
                             key={c.name}
                             className="country-card"
                             onClick={() => handleCountryClick(c.name)}
-                            style={{ cursor: "pointer" }}
                         >
+                            <img
+                                src={flagMap[c.name]}
+                                alt={c.name}
+                                className="country-flag"
+                            />
+
                             <h3>{c.name}</h3>
 
                             {c.trackCount !== undefined && (
                                 <p>
-                                    {c.trackCount} Track
-                                    {c.trackCount !== 1 ? "s" : ""}
+                                    {c.trackCount} Track{c.trackCount !== 1 ? "s" : ""}
                                 </p>
                             )}
                         </div>
