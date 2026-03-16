@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import API_URL from "../../api";
 import "./Login.css";
@@ -8,6 +8,14 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        fetch(`${API_URL}/auth/me`, { credentials: "include" })
+            .then((res) => {
+                if (res.ok) navigate("/continents");
+            })
+            .catch(() => {});
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

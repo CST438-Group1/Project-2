@@ -82,7 +82,7 @@ public class SecurityConfig {
     private AuthenticationSuccessHandler oAuth2SuccessHandler() {
         return (HttpServletRequest request, HttpServletResponse response,
                 Authentication authentication) -> {
-            response.sendRedirect(frontendUrl);
+            response.sendRedirect(frontendUrl + "/continents?oauth=success");
         };
     }
 
