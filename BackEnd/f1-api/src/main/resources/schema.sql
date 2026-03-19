@@ -85,12 +85,4 @@ CREATE TABLE IF NOT EXISTS app_users (
 );
 
 -- Add role column if it doesn't already exist (for existing databases)
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM information_schema.columns
-        WHERE table_name = 'app_users' AND column_name = 'role'
-    ) THEN
-        ALTER TABLE app_users ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'USER';
-    END IF;
-END $$;
+ALTER TABLE app_users ADD COLUMN IF NOT EXISTS role VARCHAR(20) NOT NULL DEFAULT 'USER';
